@@ -11,38 +11,29 @@ export default function Home() {
     .catch(err => console.log(err));
   })
 
+  // complete 6 progress 120
   return (
     <main className="mx-auto text-center">
       <h1 className="text-4xl my-4">Reading List</h1>
-      <div className="relative overflow-x-auto shadow-md rounded-lg mx-4">
-        <table className="w-full mx-auto text-sm text-gray-500">
+      <div className="relative overflow-x-hidden shadow-md rounded-lg mx-4">
+        <table className="w-full mx-auto text-sm text-gray-500 table-fixed">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3">Book Title</th>
-              <th scope="col" className="px-6 py-3">Author(s)</th>
-              <th scope="col" className="px-6 py-3">Published Date</th>
-              <th scope="col" className="px-6 py-3">Genre(s)</th>
-              <th scope="col" className="px-6 py-3">Length</th>
-              <th scope="col" className="px-6 py-3">Current Page</th>
-              <th scope="col" className="px-6 py-3">Current Chapter</th>
-              <th scope="col" className="px-6 py-3">Start Date</th>
-              <th scope="col" className="px-6 py-3">Finish Date</th>
-              <th scope="col" className="px-6 py-3">Completed</th>
+              <th scope="col" className="px-6 py-3 w-16">☑</th>
+              <th scope="col" className="px-6 py-3">Title</th>
+              <th scope="col" className="px-6 py-3 w-28">Progress</th>
             </tr>
           </thead>
           <tbody className="text-left">
             {books.map(book => (
               <tr key={book.id} className="bg-white border-b hover:bg-gray-50">
-                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{book.title || ""}</td>
-                <td className="px-6 py-4">{book.authors_array.join(', ') || ""}</td>
-                <td className="px-6 py-4">{book.published || ""}</td>
-                <td className="px-6 py-4">{book.genres_array.join(', ') || ""}</td>
-                <td className="px-6 py-4">{book.length_pages || ""}</td>
-                <td className="px-6 py-4">{book.current_page || ""}</td>
-                <td className="px-6 py-4">{book.current_chapter || ""}</td>
-                <td className="px-6 py-4">{book.started_reading || ""}</td>
-                <td className="px-6 py-4">{book.finished_reading || ""}</td>
-                <td className="px-6 py-4">{book.complete}</td>
+                <td className="px-6 py-4 w-16">{book.complete ? (
+                  <input type="checkbox" checked />
+                ) : (
+                  <input type="checkbox" />
+                )}</td>
+                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap w-28 overflow-hidden">{book.title || ""}</td>
+                <td className="px-6 py-4">{parseInt((book.current_page / book.length_pages) * 100) || "0"}%</td>
               </tr>
             ))}
           </tbody>
