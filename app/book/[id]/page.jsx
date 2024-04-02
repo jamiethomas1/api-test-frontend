@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <main className="mx-auto text-center">
-      <Image className="mx-auto my-3" width={0} height={0} sizes="100vw" src={book.cover_image_url} alt="" style={{ width: '50%', height: 'auto' }}/>
+      <Image className="mx-auto my-3" width={0} height={0} sizes="100vw" src={book.cover_image_url || "/default_book_cover.png"} alt="" style={{ width: '50%', height: 'auto' }}/>
       <h2 className="font-bold text-2xl">{book.title || ""}</h2>
       <p>by {book.authors_array?.join(', ')}</p>
       <hr className="my-3" />
